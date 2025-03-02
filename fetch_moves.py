@@ -18,20 +18,20 @@ def listen_match():
     
 
 # Queue to store opponent moves safely
-move_queue = asyncio.Queue()
-event_stream = client.board.stream_incoming_events()
+# move_queue = asyncio.Queue()
+# event_stream = client.board.stream_incoming_events()
 
-# Function to listen for opponent moves using WebSocket
-async def fetch_moves():
-    headers = {"Authorization": f"Bearer {LICHESS_TOKEN}"}
+# # Function to listen for opponent moves using WebSocket
+# async def fetch_moves():
+#     headers = {"Authorization": f"Bearer {LICHESS_TOKEN}"}
     
-    async with websockets.connect(LICHESS_WS_URL, extra_headers=headers) as ws:
-        async for message in ws:
-            data = json.loads(message)
-            if "state" in data and "moves" in data["state"]:
-                moves = data["state"]["moves"].split()
-                opponent_move = moves[-1] if moves else None
-                if opponent_move:
-                    await move_queue.put(opponent_move)
-                    print(f"\nOpponent moved: {opponent_move}")
-                    print("Your turn:", end=" ", flush=True)
+#     async with websockets.connect(LICHESS_WS_URL, extra_headers=headers) as ws:
+#         async for message in ws:
+#             data = json.loads(message)
+#             if "state" in data and "moves" in data["state"]:
+#                 moves = data["state"]["moves"].split()
+#                 opponent_move = moves[-1] if moves else None
+#                 if opponent_move:
+#                     await move_queue.put(opponent_move)
+#                     print(f"\nOpponent moved: {opponent_move}")
+#                     print("Your turn:", end=" ", flush=True)
