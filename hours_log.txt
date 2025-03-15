@@ -1,0 +1,3 @@
+10 (first weekend): early scoping, planning, lichess test, img recog test
+14 (weekdays from March 3): finished image recognition
+14.5 (March 8)
